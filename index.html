@@ -14,6 +14,10 @@
 </head>
 <body>
 
+     <audio autoplay loop>
+        <source src="assets/Alt-J - Taro.mp3" type="audio/mp3">
+    </audio>
+    
     <script type="text/javascript">
 
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
@@ -64,7 +68,7 @@
 
             this.load.image('dot', 'assets/dot.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
-            this.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
+            this.load.spritesheet('monsteraki', 'assets/monsteraki.jpg', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map.json', null, Phaser.Tilemap.TILED_JSON);
 
             //  Needless to say, graphics (C)opyright Namco
@@ -90,7 +94,7 @@
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
 
             //  Position Pacman at grid location 14x17 (the +8 accounts for his anchor)
-            this.pacman = this.add.sprite((14 * 16) + 8, (17 * 16) + 8, 'pacman', 0);
+            this.pacman = this.add.sprite((14 * 16) + 8, (17 * 16) + 8, 'monsteraki', 0);
             this.pacman.anchor.set(0.5);
             this.pacman.animations.add('munch', [0, 1, 2, 1], 20, true);
 
@@ -221,7 +225,10 @@
         eatDot: function (pacman, dot) {
 
             dot.kill();
-
+         var audio = new Audio('assets/Eat Sound Effect.mp3');
+           audio.play()
+           score += 3;
+           scoreText.text = 'Score: ' + score;
             if (this.dots.total === 0)
             {
                 this.dots.callAll('revive');
