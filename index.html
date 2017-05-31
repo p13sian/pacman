@@ -202,6 +202,21 @@
                 this.dots.callAll('revive');
             }
         },
+	     eatCoin: function(pacman,coin){
+		     
+            coin.kill();
+		     
+	    this.bonus+=10;
+            this.score+=10;
+            this.bonusText.text= 'Bonus: '+ this.bonus;
+            this.scoreText.text= 'Score: ' + this.bonus;
+            
+	   
+            if(this.dots.total===0)
+            {
+                this.dots.callAll('revive');
+            }
+		     
         update: function () {
           
             this.physics.arcade.collide(this.pacman, this.layer);
